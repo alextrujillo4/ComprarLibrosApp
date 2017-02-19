@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">A01328426_PrimerParcial_ANDROID_FEB17</string>
+    <string name="title_activity_detalle_libro">DetalleLibroActivity</string>
+
+    <string-array name="numero_de_libros">
+        <item>0 libros</item>
+        <item>1 libro</item>
+        <item>2 libros</item>
+        <item>3 libros</item>
+        <item>4 libros</item>
+        <item>5 libros</item>
+        <item>6 libros</item>
+        <item>7 libros</item>
+        <item>8 libros</item>
+        <item>9 libros</item>
+        <item>10 libros</item>
+    </string-array>
+    <string name="title_activity_catalogo_libros">CatalogoLibrosActivity</string>
+
+
+</resources>

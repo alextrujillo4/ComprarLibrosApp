@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button btIniciarSesion = (Button) findViewById(R.id.bt_ingresar);
         Button  btRegistrarse = (Button) findViewById(R.id.bt_registrarse);
 
-
         btIniciarSesion.setOnClickListener(this);
         btRegistrarse.setOnClickListener(this);
 

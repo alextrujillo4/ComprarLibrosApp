@@ -73,7 +73,7 @@ public class CatalogoActivity  extends ListActivity implements AdapterView.OnIte
         listLibros.add(libro);
 
         libro = new Libro ("9781785889035", "Android Programming for Beginners",
-                b3,"48b3.00", R.drawable.book3);
+                b3,"48.00", R.drawable.book3);
         listLibros.add(libro);
 
         libro = new Libro ("1430264543", "Learn Java for Android  Development ",
@@ -109,6 +109,7 @@ public class CatalogoActivity  extends ListActivity implements AdapterView.OnIte
                     Bundle bundleLibros = intent.getExtras();
                     Libro productoComprado = (Libro) bundleLibros.getSerializable("arrayLibro");
                     bundle = bundleLibros;
+                    
                 }
 
                 break;
@@ -118,6 +119,7 @@ public class CatalogoActivity  extends ListActivity implements AdapterView.OnIte
                 bundle = intent.getExtras();
                 bundle = getIntent().getExtras();
                 bundle = data.getExtras();
+
         }
     }
 

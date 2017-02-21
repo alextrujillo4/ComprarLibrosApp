@@ -44,6 +44,8 @@ public class CarritoActivity extends ListActivity  implements View.OnClickListen
         totalPrice = (TextView) findViewById(R.id.tvTotalPrice);
         bClear = (Button) findViewById(R.id.bBorrar);
         bComprar = (Button) findViewById(R.id.bComprar);
+        double total = 39.99 + 44.99 + 48 + 56 + 39;
+        totalPrice.setText(String.valueOf(total));
 
         Bundle bundle = this.getIntent().getExtras();
         librosComprados = (ArrayList<Libro>)  getIntent().getSerializableExtra("productoCompradoArray");

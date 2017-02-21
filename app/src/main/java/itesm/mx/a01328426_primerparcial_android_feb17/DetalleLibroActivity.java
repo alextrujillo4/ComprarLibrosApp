@@ -31,12 +31,11 @@ public class DetalleLibroActivity extends AppCompatActivity  implements View.OnC
     Button btnAceptar, btnCancelar;
     Spinner spNumeroLibros;
 
-    Libro producto;
 
     String isbn,titulo, precio;
     int image, existencia, nLibros ;
     double precioDouble, precioTotal;
-
+    Libro producto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +54,7 @@ public class DetalleLibroActivity extends AppCompatActivity  implements View.OnC
         // GET DATA FROM BLUNDLE (JUST ONE PRODUCT FROM LIST)
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        producto = (Libro) bundle.getSerializable("arrayLibro");
+        Libro producto = (Libro) bundle.getSerializable("arrayLibro");
         tvIsbn.setText(producto.getisbn());
         tvTitulo.setText(producto.getTitulo());
         tvExistencia.setText(producto.getCantidad());

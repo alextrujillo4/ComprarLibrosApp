@@ -135,8 +135,7 @@ public class DetalleLibroActivity extends AppCompatActivity  implements View.OnC
 
     }
 
-    private void setProductProperties() {
-    }
+
 
 
 

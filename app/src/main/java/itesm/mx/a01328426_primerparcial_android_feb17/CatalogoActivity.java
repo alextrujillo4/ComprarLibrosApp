@@ -18,10 +18,12 @@ import java.util.List;
 
 public class CatalogoActivity  extends ListActivity implements AdapterView.OnItemClickListener  {
     ArrayList<Libro> arrayLibro;
+    ArrayList<Libro> arrayLibro2;
     Libro productoComprado;
     Bundle bundle;
-    //int b1=5, b2=8, b3=6, b4=3, b5=10;
+    String b1="5", b2="8", b3="6", b4="3", b5="10";
     static final int REFRESHDATA = 1;
+    static final int COMPRASCODE = 2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +36,9 @@ public class CatalogoActivity  extends ListActivity implements AdapterView.OnIte
 
             if(bundle != null){
                 Intent intent = new Intent(CatalogoActivity.this, CarritoActivity.class);
-                bundle.putSerializable("productoCompradoList",productoComprado);
+                bundle.putSerializable("productoCompradoArray",arrayLibro2);
                 intent.putExtras(bundle);
-                startActivity(intent);
+                startActivityForResult(intent,COMPRASCODE);
 
             }else{
                 Snackbar.make(view, "No hay objetos en el Carrito de Compras", Snackbar.LENGTH_LONG)
@@ -60,23 +62,23 @@ public class CatalogoActivity  extends ListActivity implements AdapterView.OnIte
         ArrayList<Libro> listLibros = new ArrayList<Libro>();
 
         libro = new Libro ("013438945X", "Introduction to Android Application Development: Android Essentials",
-                "5","39.99", R.drawable.book1);
+                b1,"39.99", R.drawable.book1);
         listLibros.add(libro);
 
         libro = new Libro ("01785886193", "Android Application Development: Cookbook 2nd Edition",
-                "8","44.99", R.drawable.book2);
+                b2,"44.99", R.drawable.book2);
         listLibros.add(libro);
 
         libro = new Libro ("9781785889035", "Android Programming for Beginners",
-                "6","48.00", R.drawable.book3);
+                b3,"48b3.00", R.drawable.book3);
         listLibros.add(libro);
 
         libro = new Libro ("1430264543", "Learn Java for Android  Development ",
-                "3","56.00", R.drawable.book4);
+                b4,"56.00", R.drawable.book4);
         listLibros.add(libro);
 
         libro = new Libro ("9781329747517", "Android: App  Development & Programming Guide: Learn In A Day",
-                "10","39.49", R.drawable.book5);
+                b5,"39.49", R.drawable.book5);
         listLibros.add(libro);
 
 
@@ -87,7 +89,7 @@ public class CatalogoActivity  extends ListActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         Libro libro = (Libro)parent.getItemAtPosition(position);
-         Intent intent = new Intent(this, DetalleLibroActivity.class);
+        Intent intent = new Intent(this, DetalleLibroActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("arrayLibro",libro);
         intent.putExtras(bundle);
@@ -100,13 +102,24 @@ public class CatalogoActivity  extends ListActivity implements AdapterView.OnIte
         switch (requestCode) {
             case REFRESHDATA:
                 if (resultCode == RESULT_OK) {
+                    Intent intent = this.getIntent();
+                    bundle = intent.getExtras();
                     bundle = getIntent().getExtras();
                     bundle = data.getExtras();
-                    productoComprado = (Libro) bundle.getSerializable("productoComprado");
+                   // productoComprado = (Libro) bundle.getSerializable("productoComprado");
+                    //arrayLibro2.add(productoComprado);
+
+
                 }
+
                 break;
 
-            default:
+            case COMPRASCODE:
+                Intent intent = this.getIntent();
+                bundle = intent.getExtras();
+                bundle = getIntent().getExtras();
+                bundle = data.getExtras();
+                productoComprado = (Libro) bundle.getSerializable("productoComprado2");
                 break;
         }
     }

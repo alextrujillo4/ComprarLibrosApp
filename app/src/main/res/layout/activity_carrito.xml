@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Carta de compras: "
+        android:text="Carrito de compras: "
         android:textAllCaps="true"
         android:textSize="24dp"
         android:textStyle="bold"/>
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.75"
             android:gravity="center_vertical|end"
-            android:text="total_price"
+            android:text="Precio Total: "
             android:textStyle="bold"/>
 
         <TextView

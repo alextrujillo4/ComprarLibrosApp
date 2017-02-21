@@ -27,57 +27,50 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarritoActivity extends ListActivity {
-    ArrayList<Libro> libros = new ArrayList<Libro>();
+public class CarritoActivity extends ListActivity  implements View.OnClickListener{
     ArrayList<Libro> librosComprados ;
 
     Button bClear;
     Button bComprar;
     TextView totalPrice;
-    String isbn,titulo, precio, existenciaString;
-    int existencia,image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carrito);
 
+
+
         totalPrice = (TextView) findViewById(R.id.tvTotalPrice);
         bClear = (Button) findViewById(R.id.bBorrar);
         bComprar = (Button) findViewById(R.id.bComprar);
 
         Bundle bundle = this.getIntent().getExtras();
+        librosComprados = (ArrayList<Libro>)  getIntent().getSerializableExtra("productoCompradoArray");
 
-        Libro productoComprar = (Libro) bundle.getSerializable("productoComprado");
-        isbn = productoComprar.getisbn();
-        titulo = productoComprar.getTitulo();
-        existencia = Integer.parseInt(productoComprar.getCantidad());
-        existenciaString = productoComprar.getCantidad();
-        precio = productoComprar.getPrecio();
-        image = productoComprar.getIdImagen();
-        totalPrice.setText(precio);
-
-
-            librosComprados = getDataForListView(isbn,titulo,existenciaString,precio,image);
-            libros.addAll(librosComprados);
-            LibroAdapter adapterLibros = new LibroAdapter(this, libros);
+            //libros.addAll(librosComprados);
+            LibroAdapter adapterLibros = new LibroAdapter(this, librosComprados);
             setListAdapter(adapterLibros);
 
-
-
-    }
-
-    public ArrayList<Libro> getDataForListView(String isbn, String titulo , String  existenciaString, String precio, int image) {
-        Libro libro;
-
-        ArrayList<Libro> listLibros = new ArrayList<>();
-
-        libro = new Libro (isbn, titulo,existenciaString,precio, image);
-        listLibros.add(libro);
-
-        return  listLibros;
     }
 
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.bComprar:
+                Toast.makeText(getApplicationContext(),"Gracias por su compra ! :)", Toast.LENGTH_LONG).show();
+                break;
+            case  R.id.bBorrar:
+                Toast.makeText(getApplicationContext(),"Articulos Borrados", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, DetalleLibroActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("productoComprado",null);
+                intent.putExtras(bundle);
+                setResult(CatalogoActivity.RESULT_OK, intent);
+                finish();
+                break;
+        }
+    }
 }

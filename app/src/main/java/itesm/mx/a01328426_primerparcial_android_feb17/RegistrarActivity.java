@@ -9,8 +9,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class RegistrarActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText etUser;
-    EditText etConfirmUser;
+    EditText etUser = null;
+    EditText etConfirmUser = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,19 +26,19 @@ public class RegistrarActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
 
         if (etUser.getText() != null && etUser.getText() != null && etConfirmUser.getText() != null &&
-                etUser.getText().toString().equals(etConfirmUser.getText().toString())){
-            Toast.makeText(this.getApplicationContext(), "El usuario se ha registrado exitosamente", Toast.LENGTH_SHORT).show();
+                etUser.getText().toString().equals(etConfirmUser.getText().toString()) && !etUser.getText().toString().equals("")) {
 
+            Toast.makeText(this.getApplicationContext(), "El usuario se ha registrado exitosamente", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();
             intent.putExtra("user", etUser.getText().toString());
             setResult(RESULT_OK, intent);
             finish();
 
-        }else {
-            Toast.makeText(this.getApplicationContext(), "Los usuarios no coinciden, porfavor inténtalo de nuevo", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this.getApplicationContext(), "Usuario Inválido, porfavor inténtalo de nuevo", Toast.LENGTH_SHORT).show();
 
         }
-
     }
+
 }
 

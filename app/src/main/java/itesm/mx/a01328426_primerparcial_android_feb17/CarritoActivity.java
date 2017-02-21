@@ -47,10 +47,8 @@ public class CarritoActivity extends ListActivity  implements View.OnClickListen
 
         Bundle bundle = this.getIntent().getExtras();
         librosComprados = (ArrayList<Libro>)  getIntent().getSerializableExtra("productoCompradoArray");
-
-            //libros.addAll(librosComprados);
-            LibroAdapter adapterLibros = new LibroAdapter(this, librosComprados);
-            setListAdapter(adapterLibros);
+        LibroAdapter adapterLibros = new LibroAdapter(this, librosComprados);
+        setListAdapter(adapterLibros);
 
     }
 
@@ -61,6 +59,7 @@ public class CarritoActivity extends ListActivity  implements View.OnClickListen
         switch (v.getId()) {
             case R.id.bComprar:
                 Toast.makeText(getApplicationContext(),"Gracias por su compra ! :)", Toast.LENGTH_LONG).show();
+                finish();
                 break;
             case  R.id.bBorrar:
                 Toast.makeText(getApplicationContext(),"Articulos Borrados", Toast.LENGTH_LONG).show();

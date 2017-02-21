@@ -26,21 +26,21 @@ import static android.R.attr.data;
 
 public class DetalleLibroActivity extends AppCompatActivity  implements View.OnClickListener , AdapterView.OnItemSelectedListener{
 
-    String isbn,titulo, precio;
-    int image, existencia, nLibros, position;
-    double precioDouble, precioTotal;
-
     TextView tvIsbn, tvTitulo, tvExistencia,tvCantidadAComprar, tvPrecio;
     ImageView ivLibro;
     Button btnAceptar, btnCancelar;
     Spinner spNumeroLibros;
 
     Libro producto;
+
+    String isbn,titulo, precio;
+    int image, existencia, nLibros ;
+    double precioDouble, precioTotal;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_libro);
-
 
         tvIsbn = (TextView)findViewById(R.id.isbn_libro);
         tvTitulo = (TextView)findViewById(R.id.titulo_libro);
@@ -66,6 +66,7 @@ public class DetalleLibroActivity extends AppCompatActivity  implements View.OnC
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.numero_de_libros,
                 android.R.layout.simple_spinner_item);
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spNumeroLibros.setAdapter(adapter);
 
@@ -78,14 +79,15 @@ public class DetalleLibroActivity extends AppCompatActivity  implements View.OnC
             image = producto.getIdImagen();
 
             precioDouble = Double.parseDouble(precio);
-            tvIsbn.setText(isbn);
+            tvIsbn.setText("Isbn:   "+isbn);
             tvTitulo.setText(titulo);
             tvExistencia.setText(String.valueOf(existencia));
-            tvPrecio.setText(precio);
-            tvExistencia.setText("Cantidad de libros disponibles: "+existencia);
+            tvPrecio.setText("Precio: "+precio);
+            tvExistencia.setText("Cantidad disponible: "+existencia);
             Drawable drawable= ContextCompat.getDrawable(this, image);
             ivLibro.setImageDrawable(drawable);
             btnAceptar.setText("Comprar: 0 libro(s) por: $ 0.00");
+
             spNumeroLibros.setOnItemSelectedListener(this);
             btnAceptar.setOnClickListener(this);
             btnCancelar.setOnClickListener(this);
@@ -110,7 +112,7 @@ public class DetalleLibroActivity extends AppCompatActivity  implements View.OnC
                    Toast.makeText(getApplicationContext(),"Libro(s) gregado(s) al carrito de compras", Toast.LENGTH_LONG).show();
                    Intent intent = new Intent(DetalleLibroActivity.this, CatalogoActivity.class);
                    Bundle bundle = new Bundle();
-                   bundle.putSerializable("productoComprado",producto);
+                   bundle.putSerializable("arraylibro",producto);
                    intent.putExtras(bundle);
                    setResult(CatalogoActivity.RESULT_OK, intent);
                    finish();

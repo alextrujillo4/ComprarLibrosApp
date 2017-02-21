@@ -10,9 +10,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tienda de Libros"
+        android:text="Bienvenido!"
         android:textStyle="bold"
-        android:textColor="#679345"
+        android:textColor="#212121"
         android:textSize="24dp"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
@@ -32,12 +32,17 @@
         android:layout_height="wrap_content"
         android:text="INGRESAR"
         android:layout_gravity="center"
-        android:id="@+id/bt_ingresar" />
+        android:id="@+id/bt_ingresar"
+        android:background="#FFB300"
+        android:textColor="#F5F5F5"
+        android:padding="16dp"/>
 
     <Button
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="REGISTRARSE"
         android:layout_gravity="center"
-        android:id="@+id/bt_registrarse" />
+        android:id="@+id/bt_registrarse"
+        android:padding="16dp"
+        android:background="#F5F5F5" />
 </LinearLayout>

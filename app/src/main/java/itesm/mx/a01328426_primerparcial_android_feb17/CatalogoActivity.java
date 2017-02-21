@@ -18,12 +18,14 @@ import java.util.List;
 
 public class CatalogoActivity  extends ListActivity implements AdapterView.OnItemClickListener  {
     ArrayList<Libro> arrayLibro;
-    ArrayList<Libro> arrayLibro2;
-    Libro productoComprado;
+    ArrayList<Libro> arrayLibro2 = null;
+
     Bundle bundle;
     String b1="5", b2="8", b3="6", b4="3", b5="10";
     static final int REFRESHDATA = 1;
     static final int COMPRASCODE = 2;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +38,10 @@ public class CatalogoActivity  extends ListActivity implements AdapterView.OnIte
 
             if(bundle != null){
                 Intent intent = new Intent(CatalogoActivity.this, CarritoActivity.class);
-                bundle.putSerializable("productoCompradoArray",arrayLibro2);
-                intent.putExtras(bundle);
-                startActivityForResult(intent,COMPRASCODE);
+                Bundle bundleCarritos = new Bundle();
+                bundleCarritos.putSerializable("productoCompradoArray",arrayLibro);
+                intent.putExtras(bundleCarritos);
+                startActivity(intent);
 
             }else{
                 Snackbar.make(view, "No hay objetos en el Carrito de Compras", Snackbar.LENGTH_LONG)
@@ -49,7 +52,7 @@ public class CatalogoActivity  extends ListActivity implements AdapterView.OnIte
             }
         });
 
-        Log.d("ERROR", "ENTRADA A CATALOGO");
+
         arrayLibro = getDataForListView();
         LibroAdapter adapterLibros = new LibroAdapter(this, arrayLibro);
         setListAdapter(adapterLibros);
@@ -103,13 +106,9 @@ public class CatalogoActivity  extends ListActivity implements AdapterView.OnIte
             case REFRESHDATA:
                 if (resultCode == RESULT_OK) {
                     Intent intent = this.getIntent();
-                    bundle = intent.getExtras();
-                    bundle = getIntent().getExtras();
-                    bundle = data.getExtras();
-                   // productoComprado = (Libro) bundle.getSerializable("productoComprado");
-                    //arrayLibro2.add(productoComprado);
-
-
+                    Bundle bundleLibros = intent.getExtras();
+                    Libro productoComprado = (Libro) bundleLibros.getSerializable("arrayLibro");
+                    bundle = bundleLibros;
                 }
 
                 break;
@@ -119,8 +118,6 @@ public class CatalogoActivity  extends ListActivity implements AdapterView.OnIte
                 bundle = intent.getExtras();
                 bundle = getIntent().getExtras();
                 bundle = data.getExtras();
-                productoComprado = (Libro) bundle.getSerializable("productoComprado2");
-                break;
         }
     }
 

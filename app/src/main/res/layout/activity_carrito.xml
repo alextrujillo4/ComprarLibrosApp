@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context="itesm.mx.a01328426_primerparcial_android_feb17.CarritoActivity">
 
     <TextView
@@ -15,6 +16,7 @@
         android:text="Carrito de compras: "
         android:textAllCaps="true"
         android:textSize="24dp"
+        android:padding="16dp"
         android:textStyle="bold"/>
 
     <ListView
@@ -64,19 +66,25 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:text="Borrar Items"
+            android:translationZ="1000dp"
             android:textAllCaps="true"
             android:textColor="@android:color/white"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:background="#FFA000"
+            android:onClick="onClick"/>
 
         <Button
             android:id="@+id/bComprar"
+            android:translationZ="1000dp"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="shop"
+            android:text="COMPRAR"
             android:textAllCaps="true"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"/>
+            android:textColor="#212121"
+            android:textStyle="bold"
+            android:background="#F5F5F5"
+            android:onClick="onClick"/>
     </LinearLayout>
 
 </RelativeLayout>

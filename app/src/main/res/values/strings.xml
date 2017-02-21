@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">A01328426_PrimerParcial_ANDROID_FEB17</string>
-    <string name="title_activity_detalle_libro">DetalleLibroActivity</string>
+    <string name="app_name">Tienda de libros </string>
+    <string name="title_activity_detalle_libro">Detalles</string>
 
     <string-array name="numero_de_libros">
         <item>0 libros</item>
@@ -18,7 +18,6 @@
     <string name="title_activity_catalogo_libros">CatalogoLibrosActivity</string>
     <string name="title_activity_libro_catalogo">LibroCatalogoActivity</string>
     <string name="title_activity_carrito">CarritoActivity</string>
-    <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_carrito_de_compras">CarritoDeComprasActivity</string>
 
 

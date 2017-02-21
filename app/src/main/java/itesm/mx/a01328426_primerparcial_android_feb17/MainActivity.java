@@ -12,11 +12,14 @@ package itesm.mx.a01328426_primerparcial_android_feb17;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -37,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btIniciarSesion.setOnClickListener(this);
         btRegistrarse.setOnClickListener(this);
+
+
 
     }
 
@@ -74,6 +79,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 user = datos.getString("user");
             }
     }
+
+
 }
 
 

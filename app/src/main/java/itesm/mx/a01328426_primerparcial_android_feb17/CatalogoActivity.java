@@ -2,8 +2,11 @@ package itesm.mx.a01328426_primerparcial_android_feb17;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -13,20 +16,42 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class CatalogoActivity  extends ListActivity implements AdapterView.OnItemClickListener  {
     ArrayList<Libro> arrayLibro;
-
+    Libro productoComprado;
+    Bundle bundle;
+    //int b1=5, b2=8, b3=6, b4=3, b5=10;
+    static final int REFRESHDATA = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalogo);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            if(bundle != null){
+                Intent intent = new Intent(CatalogoActivity.this, CarritoActivity.class);
+                bundle.putSerializable("productoCompradoList",productoComprado);
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+            }else{
+                Snackbar.make(view, "No hay objetos en el Carrito de Compras", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
+            }
+
+            }
+        });
+
+        Log.d("ERROR", "ENTRADA A CATALOGO");
         arrayLibro = getDataForListView();
         LibroAdapter adapterLibros = new LibroAdapter(this, arrayLibro);
         setListAdapter(adapterLibros);
-
         getListView().setOnItemClickListener(this);
-
     }
 
 
@@ -35,7 +60,7 @@ public class CatalogoActivity  extends ListActivity implements AdapterView.OnIte
         ArrayList<Libro> listLibros = new ArrayList<Libro>();
 
         libro = new Libro ("013438945X", "Introduction to Android Application Development: Android Essentials",
-        "5","39.99", R.drawable.book1);
+                "5","39.99", R.drawable.book1);
         listLibros.add(libro);
 
         libro = new Libro ("01785886193", "Android Application Development: Cookbook 2nd Edition",
@@ -43,15 +68,15 @@ public class CatalogoActivity  extends ListActivity implements AdapterView.OnIte
         listLibros.add(libro);
 
         libro = new Libro ("9781785889035", "Android Programming for Beginners",
-                "6","48.00", R.drawable.book2);
+                "6","48.00", R.drawable.book3);
         listLibros.add(libro);
 
         libro = new Libro ("1430264543", "Learn Java for Android  Development ",
-                "3","56.00", R.drawable.book2);
+                "3","56.00", R.drawable.book4);
         listLibros.add(libro);
 
         libro = new Libro ("9781329747517", "Android: App  Development & Programming Guide: Learn In A Day",
-                "10","39.49", R.drawable.book2);
+                "10","39.49", R.drawable.book5);
         listLibros.add(libro);
 
 
@@ -60,18 +85,33 @@ public class CatalogoActivity  extends ListActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Libro libro = (Libro)   parent.getItemAtPosition(position);
-        Toast.makeText(this, libro.getTitulo(), Toast.LENGTH_LONG).show();
 
-        Intent intent = new Intent(this, DetalleLibroActivity.class);
-
-        intent.putExtra("isbn", libro.getisbn());
-        intent.putExtra("titulo", libro.getTitulo());
-        intent.putExtra("cantidad", libro.getCantidad());
-        intent.putExtra("precio", libro.getPrecio());
-        intent.putExtra("imagen", libro.getIdImagen());
-
-        startActivity(intent);
+        Libro libro = (Libro)parent.getItemAtPosition(position);
+         Intent intent = new Intent(this, DetalleLibroActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("arrayLibro",libro);
+        intent.putExtras(bundle);
+        startActivityForResult(intent,REFRESHDATA);
     }
 
-}
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REFRESHDATA:
+                if (resultCode == RESULT_OK) {
+                    bundle = getIntent().getExtras();
+                    bundle = data.getExtras();
+                    productoComprado = (Libro) bundle.getSerializable("productoComprado");
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    }
+
+
+

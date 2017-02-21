@@ -16,6 +16,10 @@
         <item>10 libros</item>
     </string-array>
     <string name="title_activity_catalogo_libros">CatalogoLibrosActivity</string>
+    <string name="title_activity_libro_catalogo">LibroCatalogoActivity</string>
+    <string name="title_activity_carrito">CarritoActivity</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_carrito_de_compras">CarritoDeComprasActivity</string>
 
 
 </resources>
